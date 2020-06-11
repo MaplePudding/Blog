@@ -27,7 +27,7 @@
                 </div>
             </router-link>
         </div>
-        <div id="outer"> 
+        <div id="outer">
             <div id="content">
                 <transition mode="out-in">
                     <router-view>
@@ -46,14 +46,14 @@
                     n posts
                 </div>
                 <div id="social" v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
-                    <img src="image/github.png">
-                    <img src="image/stackoverflow.png">
-                    <img src="image/leetcode.png">
-                    <img src="image/about.png">
+                    <a href="#"><img src="image/github.png"></a>
+                    <a href="#"><img src="image/stackoverflow.png"></a>
+                    <a href="#"><img src="image/leetcode.png"></a>
+                    <a href="#"><img src="image/about.png"></a>
                 </div>
             </div>
             <button id="button_menu" class="baseAnimate" v-on:click="change"><img src="image/menu.png"></button>
-            <button id="button_top" class="baseAnimate" v-on:click="toTop"><img src="image/top.png"></button>
+            <button id="button_top" class="baseAnimate" v-on:click="backTop"><img src="image/top.png"></button>
         </div>
 
     </div>

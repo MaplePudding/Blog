@@ -10,17 +10,16 @@ var searchTemplate = {
     data(){
         return{
             broder: false,
-
         }
     },
 
     methods:{
         changeBroder: function(){
-            this.broder = true;
+            this.broder = !this.broder;
         }
     },
 
-    template: '<div id="searchContent" @mouseenter="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><div><button><img src="image/search.png"></button><input type="text"/></div></div>'
+    template: '<div id="searchContent" @mouseover="changeBroder" @mouseout="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><div><button><img src="image/search.png"></button><input type="text"/></div></div>'
 }
 
 Vue.component('search', searchTemplate);    // search element
@@ -75,7 +74,29 @@ var app = new Vue({
 
         smaller: function(){
             this.broder = false;
-        } 
+        },
+
+        backTop() {
+            const that = this
+            let timer = setInterval(() => {
+                let ispeed = Math.floor(-that.scrollTop / 5)
+                document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
+                if (that.scrollTop === 0) {
+                    clearInterval(timer)
+                }
+            }, 16)
+        },
+
+        scrollToTop() {
+            const that = this
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            that.scrollTop = scrollTop
+            if (that.scrollTop > 0) {
+                that.btnFlag = true
+            } else {
+                that.btnFlag = false
+            }
+        }
     },
 
     created: function () {
@@ -83,7 +104,11 @@ var app = new Vue({
     },
 
     mounted: function () {
+        window.addEventListener('scroll', this.scrollToTop)
+    },
 
+    destroyed: function() {
+        window.removeEventListener('scroll', this.scrollToTop);
     },
 
     router: router,

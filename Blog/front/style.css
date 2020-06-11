@@ -261,9 +261,9 @@ button img{
     position: absolute;
     right: 0px;
     top: 0px;
-    width: 65px;
-    height: 65px;
-    background: transparent;
+    width: 66px;
+    height: 66px;
+    background: rgb(34,34,34);
     outline: none;
     border: 1px solid rgb(34,34,34);
     border-radius: 50%;
@@ -300,7 +300,17 @@ button img{
 }
 
 .smaller{
-    animation: smaller 1s ease-in-out forwards;
+    animation: small 1s ease-in-out forwards;
+}
+
+@keyframes small{
+    0%{
+        width: 280px;
+    }
+
+    100%{
+        width: 65px;
+    }
 }
 
 
