@@ -11,47 +11,54 @@
 <body>
     <div id="app">
         <div id="menu">
-            <div class="menuElement">
-                <img src="image/home.png" class="baseAnimate"><span class="baseAnimate">Home</span>
-            </div>
-            <div class="menuElement">
-                <img src="image/category.png" class="baseAnimate"><span class="baseAnimate">Category</span>
-            </div>
-            <div class="menuElement">
-                <img src="image/search.png" class="baseAnimate"><span class="baseAnimate">Search</span>
-            </div>
-        </div>
-        <div id="outer">
-            <div id="content">
-                <div class="test">fdsfdsfdsfsdfsdf</div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-                <div class="test"></div>
-            </div>
-            <div id="aside">
-                <img src="image/github.png" id="avator">
-                <p></p>
-                <p></p>
-                <div>
-
+            <router-link to='/home'>
+                <div class="menuElement">
+                    <img src="image/home.png" class="baseAnimate"><span class="baseAnimate">Home</span>
                 </div>
-                <div id="social">
+            </router-link>
+            <router-link to='/category'>
+                <div class="menuElement">
+                    <img src="image/category.png" class="baseAnimate"><span class="baseAnimate">Category</span>
+                </div>
+            </router-link>
+            <router-link to='/search'>
+                <div class="menuElement">
+                    <img src="image/search.png" class="baseAnimate"><span class="baseAnimate">Search</span>
+                </div>
+            </router-link>
+        </div>
+        <div id="outer"> 
+            <div id="content">
+                <transition mode="out-in">
+                    <router-view>
+                        <home></home>
+                    </router-view>
+                </transition>
+            </div>
+            <div id="aside" v-show="show" v-bind:class="{extend: asideFlag, shrink: !asideFlag}">
+                <img src="image/github.png" id="avator"
+                    v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
+                <p v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
+                    Write the code, Change the World
+                </p>
+
+                <div v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}" id="posts">
+                    n posts
+                </div>
+                <div id="social" v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
                     <img src="image/github.png">
                     <img src="image/stackoverflow.png">
                     <img src="image/leetcode.png">
                     <img src="image/about.png">
                 </div>
             </div>
-            <button id="button_menu" class="baseAnimate"><img src="image/menu.png"></button>
-            <button id="button_top" class="baseAnimate"><img src="image/top.png"></button>
+            <button id="button_menu" class="baseAnimate" v-on:click="change"><img src="image/menu.png"></button>
+            <button id="button_top" class="baseAnimate" v-on:click="toTop"><img src="image/top.png"></button>
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="script.js"></script>
 </body>
 

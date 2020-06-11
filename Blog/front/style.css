@@ -2,6 +2,21 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    color: rgb(220,220,220);
+}
+
+.v-enter{
+    opacity: 0;
+    transform: translateX(-180px);
+}
+
+.v-leave-to{
+    opacity: 0;
+    transform: translateX(180px);
+}
+
+.v-enter-active, .v-leave-active{
+    transition: all 0.5s ease-in-out;
 }
 
 #menu{
@@ -14,6 +29,11 @@
     align-content: center;
     width: 100%;
     height: 70px;
+}
+
+#menu a{
+    text-decoration: none;
+    color: rgb(220,220,220);
 }
 
 .menuElement{
@@ -71,7 +91,7 @@
     color: rgb(220,220,220);
 }
 
-.test{
+.blogContent{
     width: 400px;
     height: 120px;
     background: rgb(34,34,34);
@@ -82,7 +102,7 @@
     width: 0px;
     height: auto;
     min-height: 100vh;
-    background: green;
+    background: #303133;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -91,7 +111,7 @@
 }
 
 .extend{
-    width: 0px;
+    width: 0%;
     height: 100vh;
     background: #303133;
     animation: extend 1s ease-in-out forwards;
@@ -121,6 +141,38 @@
 
     100%{
         width: 0%;
+    }
+}
+
+.graduallyAppear{
+    animation: appear 2s ease-in forwards;
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0%;
+    }
+
+    50%{
+        opacity: 0%;
+    }
+
+    100%{
+        opacity: 100%;
+    }
+}
+
+.graduallyDisappear{
+    animation: disappear 0.5s ease-in-out forwards;
+}
+
+@keyframes disappear{
+    0%{
+        opacity: 100%;
+    }
+
+    100%{
+        opacity: 0%;
     }
 }
 
@@ -158,6 +210,7 @@ button img{
     height: 120px;
     border-radius: 50%;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 #social{
@@ -175,6 +228,11 @@ button img{
     cursor: pointer;
 }
 
+#posts{
+    margin-top: 20px;
+    font-size: 25px;
+}
+
 .baseAnimate{
     animation: baseAnimate 1s ease-in forwards;
 }
@@ -188,3 +246,62 @@ button img{
         opacity: 100%;
     }
 }
+
+#searchContent{
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+#searchContent button{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 65px;
+    height: 65px;
+    background: transparent;
+    outline: none;
+    border: 1px solid rgb(34,34,34);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#searchContent img{
+    width: 50px;
+    height: 50px;
+}
+
+#searchContent input{
+    width: 100%;
+    height: 65px;
+    background: rgb(34,34,34);
+    border: 1px solid rgb(34,34,34);
+    outline: none;
+    border-radius: 33px;
+    font-size: 1.5em;
+}
+
+.bigger{
+    animation: big 1s ease-in-out forwards;
+}
+
+@keyframes big{
+    0%{
+        width: 65px;
+    }
+
+    100%{
+        width: 280px;
+    }
+}
+
+.smaller{
+    animation: smaller 1s ease-in-out forwards;
+}
+
+
+
