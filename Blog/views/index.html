@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/front/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="menu">
+            <router-link to='/home'>
+                <div class="menuElement">
+                    <img src="/front/image/home.png" class="baseAnimate"><span class="baseAnimate">Home</span>
+                </div>
+            </router-link>
+            <router-link to='/category'>
+                <div class="menuElement">
+                    <img src="/front/image/category.png" class="baseAnimate"><span class="baseAnimate">Category</span>
+                </div>
+            </router-link>
+            <router-link to='/search'>
+                <div class="menuElement">
+                    <img src="/front/image/search.png" class="baseAnimate"><span class="baseAnimate">Search</span>
+                </div>
+            </router-link>
+        </div>
+        <div id="outer">
+            <div id="content">
+                <transition mode="out-in">
+                    <router-view>
+                        <home></home>
+                    </router-view>
+                </transition>
+            </div>
+            <div id="aside" v-show="show" v-bind:class="{extend: asideFlag, shrink: !asideFlag}">
+                <img src="/front/image/github.png" id="avator"
+                    v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
+                <p v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
+                    Write the code, Change the World
+                </p>
+
+                <div v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}" id="posts">
+                    n posts
+                </div>
+                <div id="social" v-bind:class="{graduallyAppear: asideFlag, graduallyDisappear: !asideFlag}">
+                    <a href="#"><img src="/front/image/github.png"></a>
+                    <a href="#"><img src="/front/image/stackoverflow.png"></a>
+                    <a href="#"><img src="/front/image/leetcode.png"></a>
+                    <a href="#"><img src="/front/image/about.png"></a>
+                </div>
+            </div>
+            <button id="button_menu" class="baseAnimate" v-on:click="change"><img src="/front/image/menu.png"></button>
+            <button id="button_top" class="baseAnimate" v-on:click="backTop"><img src="/front/image/top.png"></button>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./front/script.js"></script>
+</body>
+
+</html>
