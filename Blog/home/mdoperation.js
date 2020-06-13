@@ -27,18 +27,14 @@ async function walk(path){
  */
 
 function getMetaData(mdArr){
+    var result = [];
     for(let i = 0; i < mdArr.length; ++i){
         var mdStr = fs.readFileSync(mdArr[i], 'utf-8');
-        var{metaData, content} = parseMD(mdStr);
-        var{title, date} = metaData;
-        console.log(title);
+        var metaData = parseMD(mdStr).metadata;
+        result.push(metaData);
     }
+    return result;
 }
 
-walk('./articles').then((mdArr) =>{
-    for(let i = 0; i < mdArr.length; ++i){
-        var mdStr = fs.readFileSync(mdArr[i], 'utf-8');
-        var{metaData, content} = parseMD(mdStr);
-        console.log(parseMD(mdStr));
-    }
-});
+exports.walk = walk;
+exports.getMetaData = getMetaData;

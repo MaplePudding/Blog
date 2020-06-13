@@ -96,13 +96,21 @@
     height: 120px;
     background: rgb(34,34,34);
     margin-top: 20px;
+    transition: 0.5s cubic-bezier(.34,1.14,.6,.93) transform;
+    cursor: pointer;
 }
+
+.blogContent:hover{
+    transform: translateY(-6px);
+}
+
+
 
 #aside{
     width: 0px;
     height: auto;
     min-height: 100vh;
-    background: #303133;
+    background: #222222;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -303,7 +311,7 @@ button img{
     animation: small 1s ease-in-out forwards;
 }
 
-@keyframes small{
+@keyframes small{ 
     0%{
         width: 280px;
     }
@@ -312,6 +320,22 @@ button img{
         width: 65px;
     }
 }
+
+.title{
+    margin-left: 30px;
+    padding-top: 20px;
+    font-size: 1.4em;
+}
+
+.date{
+    position: relative;
+    left: 320px;
+    top: 40px;
+}
+
+
+
+
 
 
 

@@ -1,28 +1,44 @@
 var express = require('express');
 var router = express.Router();
+var walkdir = require('walkdir');
+var mdoperation = require('./mdoperation');
+
+/**
+ * 
+ * @param {string} srcPath markdown file path
+ * 
+ * Use walkdir to get the markdown array
+ */
+
+
+async function walk(srcPath){
+    var result = await walkdir.async(srcPath, {return_object: true});
+    var mdArr = [];
+    Object.entries(result).forEach(([path, fileStatus]) =>{
+        if(!fileStatus.isDirectory() && path.match(/\.md$/ig)){
+            mdArr.push(path);
+        }
+    })
+    return mdArr;
+}
+
 
 /**
  * get the initial page
  */
 
+
+
 router.get('/', function(request, response){
     response.render('index.html');
 });
 
-module.exports = router;
-
-const walkdir = require('walkdir');
-
-async function walk (srcPath){
-    let result = await walkdir.async(srcPath,{return_object:true});
-    const mdPaths = [];
-    Object.entries(result).forEach(([path, fileStatus]) => {
-        // walkdir会遍历所有目录和文件，我只将遍历结果中的md文件路径收集起来
-        if(!fileStatus.isDirectory() && path.match(/\.md$/ig)){
-            mdPaths.push(path);
-        }
+router.get('/getmdarray', function(request, response){
+    mdoperation.walk('./articles').then((arr) =>{
+        var res = mdoperation.getMetaData(arr);
+        response.send(res);
     });
-    return mdPaths;
-}
+})
 
+module.exports = router;
 

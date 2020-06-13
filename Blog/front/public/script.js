@@ -1,12 +1,13 @@
 
-
 var homeTemplate = {
-    template: '<div class="blogContent"></div>'
+    props: ['arr'],
+    template: '<div><div class="blogContent" v-for="item in arr"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></div></div>'
 }
 
 Vue.component('home', homeTemplate);    // home element
 
 var searchTemplate = {
+    props:['arr'],
     data(){
         return{
             broder: false,
@@ -26,6 +27,7 @@ Vue.component('search', searchTemplate);    // search element
 
 
 var categoryTemplate = {
+    props:['arr'],
     template: '<div id="categoryContent></div>"'
 }
 
@@ -48,9 +50,7 @@ var app = new Vue({
         asideFlag: false,
         show: false,
         broder: false,
-        blogArray: [
-
-        ],
+        blogArray: [],
     },
 
     methods: {
@@ -98,9 +98,23 @@ var app = new Vue({
             }
         }
     },
-
+    /**
+     * get mdarray by axios
+     */
     created: function () {
-
+        axios({
+            url:'http://127.0.0.1:3000/getmdarray', 
+        }).then((obj)=>{
+            for(let i = 0; i < obj.data.length; ++i){
+                var dateStr = new Date(obj.data[i].date);
+                var year = dateStr.getFullYear();
+                var month = dateStr.getMonth() + 1;
+                var day = dateStr.getDay();
+                var res = `${year}-${month}-${day}`;
+                obj.data[i].date = res;
+                this.blogArray.push(obj.data[i]);
+            }
+        });
     },
 
     mounted: function () {
