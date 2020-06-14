@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-art-template": "^1.0.1",
     "markdown-it": "^11.0.0",
+    "marked": "^1.1.0",
     "parse-md": "^2.0.4",
     "walkdir": "^0.4.1"
   }

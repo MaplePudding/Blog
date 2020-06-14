@@ -31,6 +31,8 @@ function getMetaData(mdArr){
     for(let i = 0; i < mdArr.length; ++i){
         var mdStr = fs.readFileSync(mdArr[i], 'utf-8');
         var metaData = parseMD(mdStr).metadata;
+        var str = mdArr[i].substr(27);
+        metaData.src = str;
         result.push(metaData);
     }
     return result;

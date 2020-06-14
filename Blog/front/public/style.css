@@ -104,6 +104,12 @@
     transform: translateY(-6px);
 }
 
+.blogContent a{
+    display: block;
+    height: 120px;
+    text-decoration: none;
+}
+
 
 
 #aside{

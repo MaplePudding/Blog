@@ -1,7 +1,13 @@
 
 var homeTemplate = {
     props: ['arr'],
-    template: '<div><div class="blogContent" v-for="item in arr"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></div></div>'
+    methods:{
+        getmarkdown(src){
+            return 'article?name='+src;
+        }
+    },
+
+    template: '<div><div class="blogContent" v-for="item in arr"><a v-bind:href="getmarkdown(item.src)"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div>'
 }
 
 Vue.component('home', homeTemplate);    // home element
@@ -96,6 +102,18 @@ var app = new Vue({
             } else {
                 that.btnFlag = false
             }
+        },
+
+        /**
+         * 
+         * sort blogArray by date
+         */
+        compare(time){
+            return function(m,n){
+                var a = new Date(m[time]);
+                var b = new Date(n[time]);
+                return b - a; 
+            }
         }
     },
     /**
@@ -114,11 +132,14 @@ var app = new Vue({
                 obj.data[i].date = res;
                 this.blogArray.push(obj.data[i]);
             }
+            this.blogArray.sort(this.compare("date"));
+            console.log(this.blogArray);
         });
     },
 
     mounted: function () {
-        window.addEventListener('scroll', this.scrollToTop)
+        window.addEventListener('scroll', this.scrollToTop);
+        this.blogArray.sort(this.compare("date"));
     },
 
     destroyed: function() {

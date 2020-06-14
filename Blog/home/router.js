@@ -2,26 +2,8 @@ var express = require('express');
 var router = express.Router();
 var walkdir = require('walkdir');
 var mdoperation = require('./mdoperation');
-
-/**
- * 
- * @param {string} srcPath markdown file path
- * 
- * Use walkdir to get the markdown array
- */
-
-
-async function walk(srcPath){
-    var result = await walkdir.async(srcPath, {return_object: true});
-    var mdArr = [];
-    Object.entries(result).forEach(([path, fileStatus]) =>{
-        if(!fileStatus.isDirectory() && path.match(/\.md$/ig)){
-            mdArr.push(path);
-        }
-    })
-    return mdArr;
-}
-
+var fs = require('fs');
+var marked = require('marked');
 
 /**
  * get the initial page
@@ -39,6 +21,21 @@ router.get('/getmdarray', function(request, response){
         response.send(res);
     });
 })
+
+router.get('/article', function(request, response){
+    var artName = request.query.name;
+    fs.readFile('./articles/'+artName, function(err, data){
+        if(err){
+            return console.log('err');
+        }
+        var mdStr = data.toString();
+        var index = mdStr.lastIndexOf('---');
+        var sub = mdStr.substr(21);
+        var res = mdStr.replace(sub, "");
+        htmlStr = marked(res);
+        response.send(htmlStr);
+    })
+});
 
 module.exports = router;
 
