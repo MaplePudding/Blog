@@ -1,4 +1,5 @@
 
+
 var homeTemplate = {
     props: ['arr'],
     methods:{
@@ -17,16 +18,36 @@ var searchTemplate = {
     data(){
         return{
             broder: false,
+            target: "Blog",
         }
     },
+
+    computed: {
+        /**
+        * 
+        * @param {string} title the title of item 
+        * Filter the array
+        */
+
+        showItem: {
+            
+            get(){
+                var filterList = this.arr;
+                return filterList.filter((item)=>{
+                    return item.title.indexOf(this.target) != -1;
+                });
+            }
+            }
+        },
+    
 
     methods:{
         changeBroder: function(){
             this.broder = !this.broder;
-        }
+        },
     },
 
-    template: '<div id="searchContent" @mouseover="changeBroder" @mouseout="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><div><button><img src="/front/image/search.png"></button><input type="text"/></div></div>'
+    template: '<div id="searchContent" @mouseover="changeBroder" @mouseout="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><div><button><img src="/front/image/search.png"></button><input type="text" v-model="target"/></div><div id="searchList"><div class="searchListContent" v-for="item in showItem"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></div></div></div>'
 }
 
 Vue.component('search', searchTemplate);    // search element
