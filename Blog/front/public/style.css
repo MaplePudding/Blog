@@ -77,6 +77,8 @@
     display: flex;
     flex-direction: row;
     background: #303133;
+    min-height: 100vh;
+    height: auto;
 }
 
 #content{
@@ -263,12 +265,11 @@ button img{
 
 #searchContent{
     position: absolute;
-    width: 65px;
-    height: 65px;
     left: 50%;
     top: 50%;
+    width: 65px;
+    height: 65px;
     transform: translate(-50%, -50%);
-    
 }
 
 #searchContent button{
@@ -305,7 +306,7 @@ button img{
 
 @keyframes big{
     0%{
-        width: 65px;
+        width: 120px;
     }
 
     100%{
@@ -323,7 +324,7 @@ button img{
     }
 
     100%{
-        width: 65px;
+        width: 120px;
     }
 }
 
@@ -334,9 +335,29 @@ button img{
 }
 
 .date{
-    position: relative;
-    left: 320px;
-    top: 40px;
+    margin-left: 320px;
+    margin-top: 40px;
+}
+
+
+#searchOuter{
+    height: 100%;
+    background: #303133;
+    
+}
+
+#searchList{
+    margin-top: 300px;
+    width: 100%;
+    background: #303133;
+}
+
+#searchList a{
+    text-decoration: none;
+}
+
+#searchListContent{
+
 }
 
 

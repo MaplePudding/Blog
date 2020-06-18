@@ -18,7 +18,7 @@ var searchTemplate = {
     data(){
         return{
             broder: false,
-            target: "Blog",
+            target: "",
         }
     },
 
@@ -42,12 +42,20 @@ var searchTemplate = {
     
 
     methods:{
+
+        /**
+         * change the css class
+         */
         changeBroder: function(){
             this.broder = !this.broder;
         },
+
+        getmarkdown(src){
+            return 'article?name='+src;
+        }
     },
 
-    template: '<div id="searchContent" @mouseover="changeBroder" @mouseout="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><div><button><img src="/front/image/search.png"></button><input type="text" v-model="target"/></div><div id="searchList"><div class="searchListContent" v-for="item in showItem"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></div></div></div>'
+    template: '<div id="searchOuter"><div id="searchContent" @mouseenter="changeBroder" @mouseleave="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><button><img src="/front/image/search.png"></button><input type="text" v-model="target"/></div><div id="searchList" v-if="target.length != 0"><div class="blogContent" v-for="item in showItem"><a v-bind:href="getmarkdown(item.src)"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div></div>'
 }
 
 Vue.component('search', searchTemplate);    // search element
