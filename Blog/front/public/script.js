@@ -76,12 +76,15 @@ var categoryTemplate = {
      */
 
     watch: {
-        arr: function(){
-            this.blogArray = this.arr;
-            for(let el = 0; el < this.blogArray.length; ++el){
-                this.category.push(this.blogArray[el].category);
-                this.category = Array.from(new Set(this.category));
-            }
+        arr: {
+            handler(val, oldVal) {
+                this.blogArray = val;
+                for (let el = 0; el < this.blogArray.length; ++el){
+                    this.category.push(this.blogArray[el].category);
+                    this.category = Array.from(new Set(this.category));
+                }
+            },
+            immediate: true,
         }
     },
 
