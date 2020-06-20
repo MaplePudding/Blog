@@ -63,19 +63,62 @@ Vue.component('search', searchTemplate);    // search element
 
 var categoryTemplate = {
     props:['arr'],
-    template: '<div id="categoryContent></div>"'
+
+    data(){
+        return{
+            blogArray: [],
+            category:[],
+        }
+    },
+
+    /**
+     * Listen for changes in prop
+     */
+
+    watch: {
+        arr: function(){
+            this.blogArray = this.arr;
+            for(let el = 0; el < this.blogArray.length; ++el){
+                this.category.push(this.blogArray[el].category);
+                this.category = Array.from(new Set(this.category));
+            }
+        }
+    },
+
+    template: '<div id="categoryContent"><categoryElement v-bind:blogArr=blogArray v-for="elem in category" v-bind:categoryName=elem></categoryElement></div>'
 }
 
-Vue.component('category', categoryTemplate);    // category element
+Vue.component('category', categoryTemplate);    // category 
+
+var categoryElement = {
+    props:['blogArr', 'categoryName'],
+
+    data(){
+        return{
+            flag: false,
+        }
+    },
+
+    methods:{
+        change: function(){
+            this.flag = !this.flag;
+        }
+    },
+
+    template:'<div class="blogEl" v-on:click="change"><div class="categoryElTitle">{{categoryName}}</div><ul><a href="#"><li v-for="item in blogArr" v-if="item.category == categoryName && flag">{{item.title}}</li></a></ul></div>'
+}
+
+Vue.component('categoryElement', categoryElement);
 /**
- * create a router ovject
+ * create a router object
  */
 
 var router = new VueRouter({
     routes: [
         {path: '/search' ,component: searchTemplate},
         {path: '/category' ,component: categoryTemplate},
-        {path: '/home', component: homeTemplate}
+        {path: '/home', component: homeTemplate},
+        { path:'*',redirect:'/home'}
     ]
 })
 
@@ -162,7 +205,6 @@ var app = new Vue({
                 this.blogArray.push(obj.data[i]);
             }
             this.blogArray.sort(this.compare("date"));
-            console.log(this.blogArray);
         });
     },
 
