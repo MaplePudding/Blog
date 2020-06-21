@@ -1,18 +1,50 @@
-#top{
-    background: rgb(34,34,34);
-    color: rgb(220,220,220);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 100%;
-    height: 70px;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #303133;
 }
 
 #content{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70%;
+    margin: 0;
     background: #303133;
     height: auto;
     min-height: 100vh;
     color: rgb(220,220,220)
 }
+
+#content h1{
+    text-align: center;
+    margin-top: 30px;
+}
+
+#content h2{
+    text-align: center;
+}
+
+#content h3{
+    text-align: center;
+}
+
+
+#content p{
+    font-size: 1.3em;
+    word-break: break-all;
+}
+
+#aside{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30%;
+    min-height: 100vh;
+    height: auto;
+    color: #2874A6;
+}
+

@@ -30,12 +30,18 @@ router.get('/article', function(request, response){
         }
         var mdStr = data.toString();
         var index = mdStr.lastIndexOf('---');
-        var sub = mdStr.substr(21);
+        var sub = mdStr.substr(index);
         var res = mdStr.replace(sub, "");
         htmlStr = marked(res);
-        response.send(htmlStr);
+        response.render('./page.html', {
+            content: res
+        });
     })
 });
+
+
+
+
 
 module.exports = router;
 
