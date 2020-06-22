@@ -4,47 +4,78 @@
 }
 
 body{
+    position: relative;
+    display: flex;
+    flex-direction: row;
     background: #303133;
+    height: auto;
 }
 
 #content{
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 70%;
     margin: 0;
     background: #303133;
     height: auto;
     min-height: 100vh;
-    color: rgb(220,220,220)
+    color: rgb(180, 180, 180)
 }
 
 #content h1{
     text-align: center;
     margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 #content h2{
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 #content h3{
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 
 #content p{
     font-size: 1.3em;
     word-break: break-all;
+    padding: 20px;
 }
 
 #aside{
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
+    bottom: 0;
     width: 30%;
     min-height: 100vh;
     height: auto;
-    color: #2874A6;
+    background: #222222;
 }
 
+#aside a{
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #85C1E9;
+    font-size: 1.4em;
+}
+
+.H1{
+    margin-left: 30px;
+}
+
+.H2{
+    margin-left: 50px;
+}
+
+.H3{
+    margin-left: 70px;
+}
+
+#content{
+    letter-spacing: 0.15em;
+}

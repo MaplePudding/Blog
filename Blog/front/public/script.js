@@ -8,7 +8,7 @@ var homeTemplate = {
         }
     },
 
-    template: '<div><div class="blogContent" v-for="item in arr"><a v-bind:href="getmarkdown(item.src)"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div>'
+    template: '<div><div class="blogContent" v-for="item in arr"><a v-bind:href="getmarkdown(item.src)" target="_Blank"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div>'
 }
 
 Vue.component('home', homeTemplate);    // home element
