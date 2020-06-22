@@ -356,6 +356,74 @@ button img{
     text-decoration: none;
 }
 
+#categoryContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.blogEl{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.categoryElTitle{
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.blogEl ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.blogEl li{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.blogEl a{
+    text-decoration: none;
+}
+
+.appear{
+    animation: appear 1s ease-in forwards;
+}
+
+@keyframes appear{
+    0%{
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    100%{
+        opacity: 100%;
+        transform: translateX(0px);
+    }
+}
+
+.disappear{
+    animation: disappear 1s ease-out forwards;
+}
+
+@keyframes disappear{
+    0%{
+        opacity: 100%;
+        transform: translateX(0px);
+    }
+
+    100%{
+        opacity: 0%;
+        transform: translateX(10px);
+    }
+}
+
+
 
 
 

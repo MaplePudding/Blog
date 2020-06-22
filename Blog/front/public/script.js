@@ -105,10 +105,14 @@ var categoryElement = {
     methods:{
         change: function(){
             this.flag = !this.flag;
-        }
+        },
+
+        getmarkdown: function(src){
+                return 'article?name='+src;
+            }
     },
 
-    template:'<div class="blogEl" v-on:click="change"><div class="categoryElTitle">{{categoryName}}</div><ul><a href="#"><li v-for="item in blogArr" v-if="item.category == categoryName && flag">{{item.title}}</li></a></ul></div>'
+    template:'<div class="blogEl" v-on:click="change"><div class="categoryElTitle">{{categoryName}}</div><ul v-bind:class="{appear: flag, disappear: !flag}"><a v-bind:href="getmarkdown(item.src)" v-for="item in blogArr" target="_Blank"><li v-if="item.category == categoryName && flag">{{item.title}}</li></a></ul></div>'
 }
 
 Vue.component('categoryElement', categoryElement);
