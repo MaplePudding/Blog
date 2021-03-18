@@ -16,15 +16,16 @@ router.get('/', function(request, response){
 });
 
 router.get('/getmdarray', function(request, response){
-    mdoperation.walk('./articles').then((arr) =>{
+    mdoperation.walk('../articles').then((arr) =>{
         var res = mdoperation.getMetaData(arr);
         response.send(res);
     });
 })
 
 router.get('/article', function(request, response){
+    console.log(1)
     var artName = request.query.name;
-    fs.readFile('./articles/'+artName, function(err, data){
+    fs.readFile('../articles/'+artName, function(err, data){
         if(err){
             return console.log('err');
         }
@@ -33,7 +34,7 @@ router.get('/article', function(request, response){
         var sub = mdStr.substr(index);
         var res = mdStr.replace(sub, "");
         htmlStr = marked(res);
-        response.render('./page.html', {
+        response.render('../../views/page.html', {
             content: res
         });
     })

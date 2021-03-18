@@ -266,7 +266,7 @@ button img{
 #searchContent{
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 30%;
     width: 65px;
     height: 65px;
     transform: translate(-50%, -50%);

@@ -4,7 +4,7 @@ var homeTemplate = {
     props: ['arr'],
     methods:{
         getmarkdown(src){
-            return 'article?name='+src;
+            return 'http://127.0.0.1:3000/article?name='+src;
         }
     },
 
@@ -51,11 +51,11 @@ var searchTemplate = {
         },
 
         getmarkdown(src){
-            return 'article?name='+src;
+            return 'http://127.0.0.1:3000/article?name='+src;
         }
     },
 
-    template: '<div id="searchOuter"><div id="searchContent" @mouseenter="changeBroder" @mouseleave="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><button><img src="/front/image/search.png"></button><input type="text" v-model="target"/></div><div id="searchList" v-if="target.length != 0"><div class="blogContent" v-for="item in showItem"><a v-bind:href="getmarkdown(item.src)"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div></div>'
+    template: '<div id="searchOuter"><div id="searchContent" @mouseenter="changeBroder" @mouseleave="changeBroder" v-bind:class="{bigger: broder, smaller: !broder}"><button><img src="../front/public/image/search.png"></button><input type="text" v-model="target"/></div><div id="searchList" v-if="target.length != 0"><div class="blogContent" v-for="item in showItem"><a v-bind:href="getmarkdown(item.src)"><div class="title">{{item.title}}</div><div class="date">{{item.date}}</div></a></div></div></div>'
 }
 
 Vue.component('search', searchTemplate);    // search element
@@ -108,7 +108,7 @@ var categoryElement = {
         },
 
         getmarkdown: function(src){
-                return 'article?name='+src;
+                return 'http://127.0.0.1:3000/article?name='+src;
             }
     },
 
